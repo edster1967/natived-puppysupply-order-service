@@ -1,0 +1,10 @@
+insert into customer (customer_id,first_name, last_name, address_1, address_2, city, state, zip, phone, email) values (1,'Ares', 'smith', '123 test drive',null ,'brunswick','OH','44212','216-555-1212','test@test.com');
+insert into customer (customer_id,first_name, last_name, address_1, address_2, city, state, zip, phone, email) values (11,'John', 'smith', '1231 test drive',null ,'brunswick','OH','44212','216-555-1212','test.one@test.com');
+insert into customer (customer_id,first_name, last_name, address_1, address_2, city, state, zip, phone, email) values (12,'Jane', 'smith', '1232 test drive',null ,'brunswick','OH','44212','216-555-1212','test.two@test.com');
+insert into customer (customer_id,first_name, last_name, address_1, address_2, city, state, zip, phone, email) values (13,'Jasmine', 'Jones', '1233 test drive',null ,'brunswick','OH','44212','216-555-1212','test.de@test.com');
+insert into customer (customer_id,first_name, last_name, address_1, address_2, city, state, zip, phone, email) values (14,'Chris', 'Williams', '1234 test drive',null ,'brunswick','OH','44212','216-555-1212','test.dee@test.com');
+
+insert into puppy_order(puppy_order_id, order_number,order_date,customer_id,sub_total,shipping_cost, tax, total) values(2,'1122',current_timestamp ,11,123.00,0.00,1.00,200.00);
+insert into puppy_order(puppy_order_id, order_number,order_date,customer_id,sub_total,shipping_cost, tax, total) values(21,'11221',current_timestamp ,12,1231.00,0.00,11.00,2001.00);
+insert into puppy_order(puppy_order_id, order_number,order_date,customer_id,sub_total,shipping_cost, tax, total) values(22,'11222',current_timestamp ,13,1232.00,0.00,12.00,2002.00);
+insert into puppy_order(puppy_order_id, order_number,order_date,customer_id,sub_total,shipping_cost, tax, total) values(23,'11223',current_timestamp ,14,1233.00,0.00,13.00,2003.00);

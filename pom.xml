@@ -77,6 +77,11 @@
             <version>${openapi.version}</version>
         </dependency>
         <!-- H2 in memory DB functionality -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>

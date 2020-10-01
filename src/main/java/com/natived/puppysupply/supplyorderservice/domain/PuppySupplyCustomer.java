@@ -3,10 +3,10 @@ package com.natived.puppysupply.supplyorderservice.domain;
 public class PuppySupplyCustomer {
 
     private Integer customerId;
-    private String firstName;
-    private String lastName;
-    private String address1;
-    private String address2;
+    private String first_name;
+    private String last_name;
+    private String address_1;
+    private String address_2;
     private String city;
     private String state;
     private String zip;
@@ -20,36 +20,12 @@ public class PuppySupplyCustomer {
         this.customerId = customerId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getAddress_1() {
+        return address_1;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAddress1() {
-        return address1;
-    }
-
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+    public void setAddress_1(String address1) {
+        this.address_1 = address1;
     }
 
     public String getCity() {
@@ -74,5 +50,29 @@ public class PuppySupplyCustomer {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getAddress_2() {
+        return address_2;
+    }
+
+    public void setAddress_2(String address_2) {
+        this.address_2 = address_2;
     }
 }
