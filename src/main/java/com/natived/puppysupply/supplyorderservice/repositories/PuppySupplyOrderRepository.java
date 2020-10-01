@@ -9,5 +9,8 @@ public interface PuppySupplyOrderRepository extends CrudRepository<PuppySupplyOr
 
     List<PuppySupplyOrder> findAll();
 
+    PuppySupplyOrder findByOrderNumber(Integer orderNumber);
+
+
 
 }

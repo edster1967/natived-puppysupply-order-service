@@ -9,7 +9,7 @@ public interface PuppyOrderService {
 
     PuppySupplyOrder findByPuppySupplyOrderId(Integer puppySupplyOrderId);
 
-    PuppySupplyOrder findByOrderNumber(String orderNumber);
+    PuppySupplyOrder findByOrderNumber(Integer orderNumber);
 
     List<PuppySupplyOrder> findBybillingLastName(String billingLastName);
 

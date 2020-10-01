@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @SpringBootTest
-@ActiveProfiles("local")
+@ActiveProfiles("dev")
 public class PuppySupplyCustomerRepositoryTest {
 
     private static final Logger testLog = LoggerFactory.getLogger(PuppySupplyCustomerRepositoryTest.class);

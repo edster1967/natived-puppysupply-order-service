@@ -1,15 +1,10 @@
-package com.natived.puppysupply.supplyorderservice.domain;
+package com.natived.puppysupply.supplyorderservice.model;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
-@Table(name="puppy_order")
-public class PuppySupplyOrder {
-    // @Column(name = "ID")
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class PuppyOrderModel {
+
     private Integer puppyOrderId;
     private Integer orderNumber;
     private Date orderDate;
@@ -82,4 +77,14 @@ public class PuppySupplyOrder {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
+
+    public PuppyCustomerModel getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(PuppyCustomerModel customer) {
+        this.customer = customer;
+    }
+
+    private PuppyCustomerModel customer;
 }
