@@ -2,7 +2,7 @@
 
 A Spring Boot REST service for looking up puppy supply orders and customers.
 
-- **Spring Boot 3.5 / Java 17+**
+- **Spring Boot 3.5 / Java 21**
 - Two database options, selected by Spring profile:
   - `local` (default): **H2 in-memory database**. No install needed; schema and sample data load on startup.
   - `dev`: **PostgreSQL**. Tables are created and seeded on startup (the scripts are safe to re-run).
@@ -16,9 +16,16 @@ A Spring Boot REST service for looking up puppy supply orders and customers.
 
 | Tool | Version | Check |
 |------|---------|-------|
-| JDK  | 17 or newer (17, 21 tested) | `java -version` |
+| JDK  | 21 | `java -version` |
 | Git  | any | `git --version` |
 | PostgreSQL | 13+ (*only for the `dev` profile*) | `psql --version` |
+
+Install a JDK 21 if you don't have one:
+
+- **macOS:** `brew install openjdk@21`, or `sdk install java 21-tem` with SDKMAN
+- **Windows:** `winget install EclipseAdoptium.Temurin.21.JDK`, or download it from https://adoptium.net
+
+Then make sure `JAVA_HOME` points to it and `java -version` reports 21.
 
 You do **not** need to install Maven. The included Maven Wrapper (`mvnw` / `mvnw.cmd`) downloads the right version on first use.
 
@@ -138,11 +145,16 @@ Sample response:
 |---|---|
 | `./mvnw test` | `mvnw.cmd test` |
 
-The tests use the H2 profile, so no database install is needed:
+No database install is needed. The tests are split into three layers:
 
-- `controllers/PuppyOrderControllerIntegrationTest`: every URL end to end (success, 404 and 400 cases, health, OpenAPI).
-- `services/PuppyOrderServiceImplTest`: service logic, as unit tests with Mockito.
-- `repositories/*RepositoryTest`: SQL and JPA queries against the H2 schema and data.
+| Layer | Test class | Kind | What it covers |
+|---|---|---|---|
+| Controller | `controllers/PuppyOrderControllerTest` | Unit (`@WebMvcTest`, mocked service) | Every URL: status codes, JSON mapping, 400 and 404 handling |
+| Controller | `controllers/PuppyOrderControllerIntegrationTest` | Integration (full app plus H2) | Every URL end to end, plus health and OpenAPI |
+| Service | `services/PuppyOrderServiceImplTest` | Unit (Mockito) | Every service method, including not-found and empty cases |
+| Repository | `repositories/PuppySupplyOrderRepositoryTest` | Slice (`@DataJpaTest` plus H2) | JPA queries |
+| Repository | `repositories/PuppySupplyCustomerRepositoryTest` | Slice (`@JdbcTest` plus H2) | `JdbcTemplate` queries and column mapping |
+| App | `SupplyOrderServiceApplicationTests` | Smoke | The Spring context starts |
 
 ## 7. Build a runnable jar
 
@@ -171,4 +183,4 @@ src/main/resources
 - **`./mvnw: Permission denied` (macOS/Linux):** run `chmod +x mvnw`.
 - **`Port 8080 already in use`:** set `SERVER_PORT=8081` in `.env`.
 - **`password authentication failed` / `Connection refused` on the dev profile:** check that PostgreSQL is running and that `DB_URL`, `DB_USERNAME` and `DB_PASSWORD` in `.env` are correct.
-- **`Unsupported class file major version`:** you're on a JDK older than 17. Check `java -version` and `JAVA_HOME`.
+- **`Unsupported class file major version`:** you're on a JDK older than 21. Check `java -version` and `JAVA_HOME`.

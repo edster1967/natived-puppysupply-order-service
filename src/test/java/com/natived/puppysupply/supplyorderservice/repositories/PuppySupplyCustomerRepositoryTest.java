@@ -1,16 +1,22 @@
 package com.natived.puppysupply.supplyorderservice.repositories;
 
 import com.natived.puppysupply.supplyorderservice.domain.PuppySupplyCustomer;
+import com.natived.puppysupply.supplyorderservice.repositories.impl.PuppySupplyCustomerRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+/**
+ * JDBC slice test - loads only JdbcTemplate plus the repository against the H2 schema and sample data.
+ */
+@JdbcTest
+@Import(PuppySupplyCustomerRepositoryImpl.class)
 @ActiveProfiles("local")
 class PuppySupplyCustomerRepositoryTest {
 
