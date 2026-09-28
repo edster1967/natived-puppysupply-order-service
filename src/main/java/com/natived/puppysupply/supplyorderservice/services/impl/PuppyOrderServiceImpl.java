@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PuppyOrderServiceImpl  implements PuppyOrderService {
@@ -25,15 +27,15 @@ public class PuppyOrderServiceImpl  implements PuppyOrderService {
 
     @Override
     public PuppySupplyOrder findByPuppySupplyOrderId(Integer puppySupplyOrderId) {
-        log.info("Begin find By Puppy Supply Order Id with value - "+ puppySupplyOrderId);
-
+        log.info("Begin find By Puppy Supply Order Id with value - {}", puppySupplyOrderId);
+        PuppySupplyOrder result = puppySupplyOrderRepository.findById(puppySupplyOrderId).orElse(null);
         log.info("End find By Puppy Supply Order Id");
-        return null;
+        return result;
     }
 
     @Override
     public PuppySupplyOrder findByOrderNumber(Integer orderNumber) {
-        log.info("Begin find By Order Number with value - "+ orderNumber);
+        log.info("Begin find By Order Number with value - {}", orderNumber);
         PuppySupplyOrder result = puppySupplyOrderRepository.findByOrderNumber(orderNumber);
         log.info("End find By Order Number");
         return result;
@@ -42,14 +44,22 @@ public class PuppyOrderServiceImpl  implements PuppyOrderService {
 
     @Override
     public List<PuppySupplyOrder> findBybillingLastName(String billingLastName) {
-        return null;
+        log.info("Begin find By Billing Last Name with value - {}", billingLastName);
+        List<Integer> customerIds = puppySupplyCustomerRepository.findCustomersByLastName(billingLastName).stream()
+                .map(PuppySupplyCustomer::getCustomerId)
+                .collect(Collectors.toList());
+        List<PuppySupplyOrder> result = customerIds.isEmpty()
+                ? Collections.emptyList()
+                : puppySupplyOrderRepository.findByCustomerIdIn(customerIds);
+        log.info("End find By Billing Last Name");
+        return result;
     }
 
     @Override
     public PuppySupplyCustomer findCustomerByCustomerId(Integer customerId) {
-        log.info("Begin find Customer By Customer Id with value - "+ customerId);
+        log.info("Begin find Customer By Customer Id with value - {}", customerId);
         PuppySupplyCustomer result = puppySupplyCustomerRepository.findCustomerByCustomerId(customerId);
-        log.info("End find Customer By Customer Id with value - "+ customerId);
+        log.info("End find Customer By Customer Id with value - {}", customerId);
         return result;
     }
 }

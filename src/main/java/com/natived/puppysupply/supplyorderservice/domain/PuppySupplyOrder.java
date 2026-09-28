@@ -1,18 +1,18 @@
 package com.natived.puppysupply.supplyorderservice.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="puppy_order")
 public class PuppySupplyOrder {
-    // @Column(name = "ID")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer puppyOrderId;
     private Integer orderNumber;
-    private Date orderDate;
+    private LocalDate orderDate;
     private Integer customerId;
     private BigDecimal subTotal;
     private BigDecimal shippingCost;
@@ -35,11 +35,11 @@ public class PuppySupplyOrder {
         this.orderNumber = orderNumber;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 

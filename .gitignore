@@ -139,3 +139,10 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+######################
+# Secrets / environment
+######################
+.env
+.env.*
+!.env.example
+/logs/
