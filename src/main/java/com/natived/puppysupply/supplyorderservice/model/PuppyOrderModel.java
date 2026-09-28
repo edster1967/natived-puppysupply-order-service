@@ -1,13 +1,13 @@
 package com.natived.puppysupply.supplyorderservice.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PuppyOrderModel {
 
     private Integer puppyOrderId;
     private Integer orderNumber;
-    private Date orderDate;
+    private LocalDate orderDate;
     private Integer customerId;
     private BigDecimal subTotal;
     private BigDecimal shippingCost;
@@ -30,11 +30,11 @@ public class PuppyOrderModel {
         this.orderNumber = orderNumber;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 
